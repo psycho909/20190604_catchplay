@@ -6,9 +6,6 @@
             <a-menu-item key="home">
                 <router-link to="/">Dashboard</router-link>
             </a-menu-item>
-            <a-menu-item key="list">
-                <router-link to="/list">會員列表</router-link>
-            </a-menu-item>
             <a-menu-item key="advanced">
                 <router-link to="/advanced">會員操作</router-link>
             </a-menu-item>

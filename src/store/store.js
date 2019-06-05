@@ -1,18 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import {ADD_USER,REMOVE_USER,FIND_USER,UPDATE_USER,INIT_USER} from './actionTypes'
+import {ADD_USER,REMOVE_USER,UPDATE_USER,INIT_USER,FIND_ONE_USER} from './actionTypes'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     users:[],
+    user:[],
     initial:false
   },
   getters:{
     getUsers(state){
       return state.users
+    },
+    getUser(state){
+      return state.user
     }
   },
   mutations: {
@@ -29,8 +33,8 @@ export default new Vuex.Store({
     [UPDATE_USER](state,data){
       state.users=data
     },
-    [FIND_USER](state,data){
-
+    [FIND_ONE_USER](state,data){
+      state.user=data
     }
   },
   actions: {
@@ -48,19 +52,23 @@ export default new Vuex.Store({
       commit(ADD_USER,data)
     },
     removeuser({commit,state},id){
-      let users=state.users.filter((user)=>{
+      let newData=state.users.filter((user)=>{
         return user.id !== id
       })
-      commit(REMOVE_USER,users)
+      commit(REMOVE_USER,newData)
     },
     updateuser({commit,state},data){
-      let users=state.users.map((user)=>{
+      let newData=state.users.map((user)=>{
         if(user.id === data.id){
-          user.username="Chen"
+          user=data
         }
         return user
       })
-      commit(UPDATE_USER,users)
+      commit(UPDATE_USER,newData)
+    },
+    findOneUser({commit,state},id){
+      let newData=state.users.find(user=>user.id === id);
+      commit(FIND_ONE_USER,newData)
     }
   }
 })

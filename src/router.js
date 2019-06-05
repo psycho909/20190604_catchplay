@@ -20,6 +20,11 @@ export default new Router({
       path: '/advanced',
       name: 'advanced',
       component: () => import('./views/Advanced.vue')
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: () => import('./views/Edit.vue')
     }
   ]
 })
