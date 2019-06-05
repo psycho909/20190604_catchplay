@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted(){
-    this.current=this.$route.name
+    
   },
   watch:{
     $route(to,from){

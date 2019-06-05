@@ -3,7 +3,8 @@
         <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
             <ul>
                 <li v-for="user in getUsers">
-                    {{user}}
+                    {{user}} <button @click="handleRemoveuser(user.id)">remove</button>
+                    <button @click="handleUpdateuser(user.id)">UPDATE</button>
                 </li>
             </ul>
         </div>
@@ -25,7 +26,13 @@ export default {
         this.inituser()
     },
     methods:{
-        ...mapActions(['inituser']),
+        ...mapActions(['inituser','removeuser','updateuser']),
+        handleRemoveuser(id){
+            this.removeuser(id)
+        },
+        handleUpdateuser(id){
+            this.updateuser({id})
+        }
     }
 }
 </script>
