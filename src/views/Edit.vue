@@ -17,7 +17,10 @@
             </div>
             <div class="input-group">
                 <label for="device">用戶裝置:</label>
-                <input id="device" name="device" type="text" :value="getUser.device" disabled>
+                <select name="device" id="device">
+                    <option value="IOS"  :selected="getUser.gdeviceender === 'IOS'?true:false">IOS</option>
+                    <option value="Android"  :selected="getUser.gendeviceder === 'Android'?true:false">Android</option>
+                </select>
             </div>
             <button>更新</button>
         </form>
