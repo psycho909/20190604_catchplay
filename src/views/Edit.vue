@@ -18,8 +18,8 @@
             <div class="input-group">
                 <label for="device">用戶裝置:</label>
                 <select name="device" id="device">
-                    <option value="IOS"  :selected="getUser.gdeviceender === 'IOS'?true:false">IOS</option>
-                    <option value="Android"  :selected="getUser.gendeviceder === 'Android'?true:false">Android</option>
+                    <option value="IOS"  :selected="getUser.device === 'IOS'?true:false">IOS</option>
+                    <option value="Android"  :selected="getUser.device === 'Android'?true:false">Android</option>
                 </select>
             </div>
             <button>更新</button>
