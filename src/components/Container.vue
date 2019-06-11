@@ -3,10 +3,16 @@
         <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
             <div class="search-group">
                 <input class="search-input" placeholder="搜尋裝置..." v-model="search" type="text">
-                <a-button @click="handleSearchFindBtn" class="mr-3" type="primary">搜尋</a-button>
-                <a-button @click="handleSearchFindAllBtn" type="primary">搜尋全部</a-button>
+                <select v-model="searchSelect">
+                    <option value="" selected>請選擇</option>
+                    <option value="username">用戶名</option>
+                    <option value="gender">性別</option>
+                    <option value="device">裝置</option>
+                </select>
+                <!-- <a-button @click="handleSearchFindBtn" class="mr-3" type="primary">搜尋</a-button> -->
+                <!-- <a-button @click="handleSearchFindAllBtn" type="primary">搜尋全部</a-button> -->
             </div>
-            <a-table bordered :dataSource="users.length>0?users:getUsers" :columns="columns">
+            <a-table bordered :dataSource="searchUsers.length>0?searchUsers:getUsers" :columns="columns">
                 <template slot="operation" slot-scope="text,data,index">
                     <a-popconfirm
                         title="確定刪除?"
@@ -30,9 +36,10 @@ export default {
         return {
             users:[],
             search:"",
+            searchSelect:"",
             columns:[
             {
-                title:"username",
+                title:"用戶名",
                 dataIndex:"username",
                 width:"20%",
                 scopedSlots:{
@@ -70,7 +77,38 @@ export default {
         }
     },
     computed:{
-        ...mapGetters(['getUsers'])
+        ...mapGetters(['getUsers']),
+        searchUsers(){
+            let newState;
+            switch(this.searchSelect){
+                case "device":
+                    newState=this.$store.state.users.filter(user=>{
+                        var reg=new RegExp(`^${this.search}`,"gi")
+                        if(user.device.match(reg)){
+                            return user
+                        }
+                    })
+                    return newState
+                case "username":
+                    newState=this.$store.state.users.filter(user=>{
+                        var reg=new RegExp(`^${this.search}`,"gi")
+                        if(user.username.match(reg)){
+                            return user
+                        }
+                    })
+                    return newState
+                case "gender":
+                    newState=this.$store.state.users.filter(user=>{
+                        var reg=new RegExp(`^${this.search}`,"gi")
+                        if(user.gender.match(reg)){
+                            return user
+                        }
+                    })
+                    return newState
+                default:
+                    return this.$store.state.users; 
+            }
+        }
     },
     mounted(){
         this.inituser()
