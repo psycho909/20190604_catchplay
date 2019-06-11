@@ -87,7 +87,16 @@ export default {
             this.$router.push({name:"edit",params:{id}})
         },
         handleSearchFindBtn(){
-            let newState=this.$store.state.users.filter(user=>user.device.indexOf(this.search) > -1)
+            if(this.search.length === 0){
+                alert("請輸入搜尋裝置...")
+                return false
+            }
+            let newState=this.$store.state.users.filter(user=>{
+                var reg=new RegExp(`^${this.search}`,"gi")
+                if(user.device.match(reg)){
+                    return user
+                }
+            })
             this.users=newState
         },
         handleSearchFindAllBtn(){
