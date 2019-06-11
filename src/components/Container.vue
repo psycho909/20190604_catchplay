@@ -87,7 +87,7 @@ export default {
             this.$router.push({name:"edit",params:{id}})
         },
         handleSearchFindBtn(){
-            let newState=this.$store.state.users.filter(user=>user.device === this.search)
+            let newState=this.$store.state.users.filter(user=>user.device.indexOf(this.search) > -1)
             this.users=newState
         },
         handleSearchFindAllBtn(){

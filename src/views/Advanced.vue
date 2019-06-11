@@ -52,7 +52,7 @@
                     username:_this.username,
                     gender:_this.gender,
                     age:_this.age,
-                    device:_this.age
+                    device:_this.device
                 })
                 alert("新增成功")
                 this.$router.push("/")
