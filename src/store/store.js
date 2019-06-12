@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Mock from '../mock/mock'
 import {ADD_USER,REMOVE_USER,UPDATE_USER,INIT_USER,FIND_ONE_USER} from './actionTypes'
 
 Vue.use(Vuex)
@@ -40,7 +41,7 @@ export default new Vuex.Store({
   actions: {
     inituser({commit,state},data){
       if(!state.initial){
-        axios("./mock/user.json")
+        axios.get("/api/users")
         .then(users=>{
           data=users.data.result
           commit(INIT_USER,data)

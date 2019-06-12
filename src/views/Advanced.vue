@@ -22,6 +22,7 @@
                         <option selected disabled value="">請選擇裝置</option>
                         <option value="IOS">IOS</option>
                         <option value="Android">Android</option>
+                        <option value="PC">PC</option>
                     </select>
                 </div>
                 <button>送出</button>
